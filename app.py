@@ -465,12 +465,30 @@ if not st.session_state['logged_in']:
                         st.rerun()
 
             else:
+                            else:
                 # --- AUTHENTICATION TABS (LOGIN / REGISTRATION) ---
+                default_index = 0 if st.session_state['auth_mode'] == "Login" else 1
                 
-default_index = 0 if st.session_state['auth_mode'] == "Login" else 1
-
-auth_choice = st.radio("Auth Action", ["Login", "Register New Node"], index=default_index, label_visibility="collapsed")
-
+                auth_choice = st.radio("Auth Action", ["Login", "Register New Node"], index=default_index, label_visibility="collapsed")
+                
+                st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
+                
+                if auth_choice == "Register New Node":
+                    u = st.text_input("Operator ID (Username)", key="reg_u")
+                    e = st.text_input("Secure Email", key="reg_e")
+                    p = st.text_input("Access Key (Password)", type='password', key="reg_p")
+                    st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
+                    if st.button("Initialize Platform", type="primary", key="reg_btn"):
+                        clean_u = u.strip() if u else ""
+                        clean_e = e.strip() if e else ""
+                        clean_p = p.strip() if p else ""
+                        success, msg = register_user(clean_u, clean_e, clean_p)
+                        if success: 
+                            st.session_state['auth_mode'] = "Login" 
+                            st.success(msg)
+                            st.rerun()
+                        else: st.error(msg)
+                            
 
 # Custom Modules 
 from db_controller import init_db, register_user, login_user, save_chat, get_user_chats, clear_user_chats, update_user_password, get_username_by_email
