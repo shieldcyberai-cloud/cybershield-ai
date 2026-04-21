@@ -1,0 +1,13 @@
+streamlit
+groq
+pandas
+scikit-learn
+edge-tts
+SpeechRecognition
+pyaudio
+opencv-python-headless
+numpy
+easyocr
+plotly
+Pillow
+#fbel yyls ptlm secx
