@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 try:
     from groq import Groq
     # Insert your Groq API Key here
-    client = Groq(api_key="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")
+    client = Groq(api_key=st.secrets["GROQ_API_KEY"])
     print(">> AI Connected Successfully: Groq (Llama 3.1)")
 except ImportError:
     print(">> Error: Please install the 'groq' package.")
