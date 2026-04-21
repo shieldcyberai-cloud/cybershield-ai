@@ -3,8 +3,6 @@ groq
 pandas
 scikit-learn
 edge-tts
-SpeechRecognition
-pyaudio
 opencv-python-headless
 numpy
 easyocr
