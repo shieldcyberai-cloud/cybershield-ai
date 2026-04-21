@@ -10,4 +10,3 @@ numpy
 easyocr
 plotly
 Pillow
-#fbel yyls ptlm secx
