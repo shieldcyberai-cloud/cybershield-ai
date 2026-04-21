@@ -466,23 +466,11 @@ if not st.session_state['logged_in']:
 
             else:
                 # --- AUTHENTICATION TABS (LOGIN / REGISTRATION) ---
-                default_index = 0 if st.session_state['auth_mode'] == "Login" elseimport streamlit as st
-import os
-import asyncio
-import edge_tts
-import speech_recognition as sr
-import cv2
-import numpy as np
-import easyocr  
-import base64
-import json
-import random
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import plotly.graph_objects as go  
-from PIL import Image
-import re 
+                
+default_index = 0 if st.session_state['auth_mode'] == "Login" else 1
+
+auth_choice = st.radio("Auth Action", ["Login", "Register New Node"], index=default_index, label_visibility="collapsed")
+
 
 # Custom Modules 
 from db_controller import init_db, register_user, login_user, save_chat, get_user_chats, clear_user_chats, update_user_password, get_username_by_email
