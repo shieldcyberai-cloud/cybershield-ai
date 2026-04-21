@@ -35,7 +35,10 @@ st.set_page_config(page_title="CyberShield AI | Advanced Threat Detection", page
 # --- EMAIL OTP DISPATCH FUNCTION (INCLUDES DEVELOPMENT FALLBACK) ---
 def send_otp_email(receiver_email, otp_code, username="Operator"):
     SENDER_EMAIL = "shieldcyberai@gmail.com" 
-    APP_PASSWORD = "fbel yyls ptlm secx" # 🚨 INSERT YOUR APP PASSWORD HERE 🚨
+    try:
+        APP_PASSWORD = st.secrets["GMAIL_PASSWORD"]
+    except:
+        APP_PASSWORD = "your_app_password"
     
     if APP_PASSWORD == "your_app_password":
         return False, "DEV_MODE"
