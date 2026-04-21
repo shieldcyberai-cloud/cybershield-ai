@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import asyncio
 import edge_tts
-import speech_recognition as sr
 import cv2
 import numpy as np
 import easyocr  
