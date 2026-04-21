@@ -463,11 +463,12 @@ if not st.session_state['logged_in']:
                         st.session_state['auth_mode'] = "Login"
                         st.session_state['reset_step'] = 1
                         st.rerun()
-
-            else:
                             else:
                 # --- AUTHENTICATION TABS (LOGIN / REGISTRATION) ---
-                default_index = 0 if st.session_state['auth_mode'] == "Login" else 1
+                if st.session_state['auth_mode'] == "Login":
+                    default_index = 0
+                else:
+                    default_index = 1
                 
                 auth_choice = st.radio("Auth Action", ["Login", "Register New Node"], index=default_index, label_visibility="collapsed")
                 
@@ -478,6 +479,7 @@ if not st.session_state['logged_in']:
                     e = st.text_input("Secure Email", key="reg_e")
                     p = st.text_input("Access Key (Password)", type='password', key="reg_p")
                     st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
+                    
                     if st.button("Initialize Platform", type="primary", key="reg_btn"):
                         clean_u = u.strip() if u else ""
                         clean_e = e.strip() if e else ""
@@ -489,20 +491,6 @@ if not st.session_state['logged_in']:
                             st.rerun()
                         else: st.error(msg)
                             
-
-# Custom Modules 
-from db_controller import init_db, register_user, login_user, save_chat, get_user_chats, clear_user_chats, update_user_password, get_username_by_email
-from brain import train_assistant, smart_cleaner, get_ai_response
-from pages_content import show_architecture_page, show_terms_page, show_privacy_page, show_contact_page
-
-init_db()
-
-@st.cache_resource
-def load_ocr_reader():
-    """Initializes and caches the EasyOCR Engine."""
-    return easyocr.Reader(['en', 'hi'])
-
-reader = load_ocr_reader()
 
 # --- CYBERSHIELD PAGE CONFIGURATION ---
 st.set_page_config(page_title="CyberShield AI | Advanced Threat Detection", page_icon="🛡️", layout="wide")
