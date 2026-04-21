@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import asyncio
 import edge_tts
-import speech_recognition as sr
 import cv2
 import numpy as np
 import easyocr  
@@ -348,16 +347,8 @@ def speak(text, priority="Normal"):
         pass
 
 def listen():
-    """Captures and translates acoustic audio data into strings utilizing the Google Speech API."""
-    r = sr.Recognizer()
-    try:
-        with sr.Microphone() as source:
-            st.toast("Acoustic Sensors Active. Awaiting vocal input... 🎤")
-            r.adjust_for_ambient_noise(source, duration=0.5)
-            audio = r.listen(source, timeout=5)
-            return r.recognize_google(audio, language="en-IN")
-    except Exception: 
-        return ""
+    st.toast("⚠️ Voice input is restricted in the Cloud Environment.")
+    return ""
 
 vectorizer, model = train_assistant()
 
