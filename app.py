@@ -18,7 +18,7 @@ import re
 # Custom Modules 
 from db_controller import init_db, register_user, login_user, save_chat, get_user_chats, clear_user_chats, update_user_password, get_username_by_email
 from brain import train_assistant, smart_cleaner, get_ai_response
-from pages_content import show_architecture_page, show_terms_page, show_privacy_page, show_contact_page
+from pages_content import show_about_us_page, show_terms_page, show_privacy_page, show_contact_page
 
 init_db()
 
@@ -408,7 +408,6 @@ if not st.session_state['logged_in']:
                     st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
                     
                     if st.button("Send Recovery OTP", type="primary"):
-                        # Added .strip() to fix mobile keyboard spaces
                         clean_e = e_reset.strip() if e_reset else ""
                         if clean_e:
                             fetched_username = get_username_by_email(clean_e)
@@ -477,7 +476,6 @@ if not st.session_state['logged_in']:
                     p = st.text_input("Access Key (Password)", type='password', key="reg_p")
                     st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
                     if st.button("Initialize Platform", type="primary", key="reg_btn"):
-                        # Added .strip() to fix mobile keyboard spaces
                         clean_u = u.strip() if u else ""
                         clean_e = e.strip() if e else ""
                         clean_p = p.strip() if p else ""
@@ -493,7 +491,6 @@ if not st.session_state['logged_in']:
                     p_log = st.text_input("Access Key", type='password', key="login_p")
                     st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
                     if st.button("Authenticate Sequence", type="primary", key="log_btn"):
-                        # Added .strip() to fix mobile keyboard spaces
                         clean_u_log = u_log.strip() if u_log else ""
                         clean_p_log = p_log.strip() if p_log else ""
                         user = login_user(clean_u_log, clean_p_log)
@@ -516,7 +513,7 @@ if not st.session_state['logged_in']:
             st.markdown("</div>", unsafe_allow_html=True)
 
     elif st.session_state['public_page'] == "about":
-        show_architecture_page()
+        show_about_us_page()
 
     elif st.session_state['public_page'] == "terms":
         show_terms_page()
@@ -529,7 +526,7 @@ if not st.session_state['logged_in']:
 
     else:
         # --- LANDING PAGE INTEGRATION ---
-        nav_c1, nav_spacer, nav_c2, nav_c3, nav_c4, nav_c5 = st.columns([3, 2, 1.2, 1.3, 1, 1.2])
+        nav_c1, nav_spacer, nav_c2, nav_c3, nav_c4, nav_c5, nav_c6 = st.columns([3, 0.5, 1, 1.2, 1.3, 1, 1.2])
         
         with nav_c1:
             st.markdown("""
@@ -539,19 +536,28 @@ if not st.session_state['logged_in']:
             </div>
             """, unsafe_allow_html=True)
         with nav_spacer: st.write("") 
+        
         with nav_c2:
             st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
-            if st.button("Architecture", type="secondary", key="nav_arch"): 
-                st.session_state['public_page'] = "about"; st.rerun()
+            if st.button("Home", type="secondary", key="nav_home"): 
+                st.session_state['public_page'] = "home"; st.rerun()
+                
         with nav_c3:
+            st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
+            if st.button("About us", type="secondary", key="nav_about"): 
+                st.session_state['public_page'] = "about"; st.rerun()
+                
+        with nav_c4:
             st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
             if st.button("👤 Contact us", type="secondary", key="nav_contact"): 
                 st.session_state['public_page'] = "contact"; st.rerun()
-        with nav_c4:
+                
+        with nav_c5:
             st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
             if st.button("Sign in", type="secondary", key="nav_signin"):
                 st.session_state['show_auth_page'] = True; st.session_state['auth_mode'] = "Login"; st.rerun()
-        with nav_c5:
+                
+        with nav_c6:
             if st.button("Sign up", key="nav_signup", type="primary"):
                 st.session_state['show_auth_page'] = True; st.session_state['auth_mode'] = "Register New Node"; st.rerun()
                 
@@ -559,8 +565,10 @@ if not st.session_state['logged_in']:
         
         st.markdown("<div style='margin-top: 10vh;'></div>", unsafe_allow_html=True)
         st.markdown("<div style='text-align: center; margin-bottom: 20px;'><span style='background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; padding: 6px 15px; border-radius: 20px; font-size: 13px; font-weight: 600;'>🟢 Core Systems Operational</span></div>", unsafe_allow_html=True)
-        st.markdown("<h1 class='hero-title'>Intelligence Meets<br>Cyber Defense</h1>", unsafe_allow_html=True)
-        st.markdown("<p style='text-align: center; color: #cbd5e1; font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px auto;'>A next-generation neural platform integrating real-time threat scanning, optical extraction, and an adaptive LLM operative.</p>", unsafe_allow_html=True)
+        
+        # --- NEW SLOGAN ---
+        st.markdown("<h1 class='hero-title'>Neural Protection<br>for Every Message</h1>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: #cbd5e1; font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px auto;'>Advanced AI infrastructure dedicated to analyzing, extracting, and securing your digital communication in real-time.</p>", unsafe_allow_html=True)
         
         btn_c1, btn_c2, btn_c3, btn_c4 = st.columns([1, 0.8, 0.8, 1])
         with btn_c2:
