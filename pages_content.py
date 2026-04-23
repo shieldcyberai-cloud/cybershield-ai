@@ -32,37 +32,35 @@ def send_real_email(user_name, user_email, user_message):
         return False
 
 # ----------------------------------------
-
-def show_architecture_page():
-    if st.button("← Return to Home", key="back_arch"): 
+# 🌟 NEW ABOUT US PAGE
+# ----------------------------------------
+def show_about_us_page():
+    if st.button("← Return to Home", key="back_about"): 
         st.session_state['public_page'] = "home"
         st.rerun()
         
-    st.markdown("<h1 style='font-weight: 800; font-size: 3rem; margin-top: 15px;'>System <span style='color:#38bdf8;'>Architecture</span></h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='font-weight: 800; font-size: 3rem; margin-top: 15px;'>About <span style='color:#38bdf8;'>CyberShield AI</span></h1>", unsafe_allow_html=True)
     
     st.markdown("""
     <div class="glass-card">
-        <h3 style="color:#f8fafc; font-weight:700;">1. Executive Summary & Mission Objective</h3>
-        <p style="color:#94a3b8; font-size:15px; line-height:1.7;">CyberShield AI is an enterprise-grade threat-intelligence platform engineered to bridge the gap between complex cybersecurity telemetry and end-user accessibility. Designed as an advanced research prototype, it provides a unified, highly-scalable interface for real-time payload scanning, heuristic analysis, and AI-driven mitigation strategies.</p>
+        <h3 style="color:#f8fafc; font-weight:700;">1. Our Mission Objective</h3>
+        <p style="color:#94a3b8; font-size:15px; line-height:1.7;">CyberShield AI was built with a single core focus: <strong>To make digital communication safe and secure for everyone.</strong> We provide a sophisticated neural layer that scans, detects, and neutralizes threats hidden within your messages and images before they can cause harm.</p>
         <hr style="border-color: rgba(255,255,255,0.05); margin: 30px 0;">
-        <h3 style="color:#f8fafc; font-weight:700;">2. Core Neural Components & Tech Stack</h3>
+        <h3 style="color:#f8fafc; font-weight:700;">2. How We Protect You</h3>
         <div style="display:flex; flex-direction:column; gap:15px; margin-top:20px;">
             <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 10px; border-left: 4px solid #38bdf8;">
-                <h4 style="margin:0 0 5px 0; color:#e2e8f0;">Heuristic ML Engine (Vector Classification)</h4>
-                <p style="margin:0; color:#94a3b8; font-size:14px;">Utilizes Scikit-Learn based NLP vectorization frameworks (TF-IDF/CountVectorizer) to classify raw text payloads. The model calculates statistical threat probabilities for phishing, SQL injection attempts, and malicious spam in real-time with sub-millisecond latency.</p>
+                <h4 style="margin:0 0 5px 0; color:#e2e8f0;">Advanced Text Analysis</h4>
+                <p style="margin:0; color:#94a3b8; font-size:14px;">Our Machine Learning models analyze text structures in real-time to intercept phishing links, spam, and malicious social engineering attempts.</p>
             </div>
             <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 10px; border-left: 4px solid #818cf8;">
-                <h4 style="margin:0 0 5px 0; color:#e2e8f0;">Vision OCR Subsystem (Image Extraction)</h4>
-                <p style="margin:0; color:#94a3b8; font-size:14px;">Integrates the EasyOCR engine backed by OpenCV to extract hidden, obfuscated textual payloads from images. This counters modern steganographic delivery methods often utilized by Advanced Persistent Threats (APTs).</p>
+                <h4 style="margin:0 0 5px 0; color:#e2e8f0;">Image Threat Extraction</h4>
+                <p style="margin:0; color:#94a3b8; font-size:14px;">Hackers often hide malicious text inside images. Our optical extraction (OCR) engine reads and scans image-based threats effortlessly.</p>
             </div>
             <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 10px; border-left: 4px solid #c084fc;">
-                <h4 style="margin:0 0 5px 0; color:#e2e8f0;">Cyber Operative (LLM Integration)</h4>
-                <p style="margin:0; color:#94a3b8; font-size:14px;">A context-aware AI assistant powered by state-of-the-art Large Language Models via API. It acts as an interactive SOC (Security Operations Center) analyst, explaining vulnerabilities, providing remediation steps, and generating real-time voice synthesis alerts via Edge-TTS.</p>
+                <h4 style="margin:0 0 5px 0; color:#e2e8f0;">Your Personal Cyber Assistant</h4>
+                <p style="margin:0; color:#94a3b8; font-size:14px;">Got a suspicious message? Just ask our AI Operative. It acts as your personal cybersecurity expert, explaining threats and guiding you on how to stay safe.</p>
             </div>
         </div>
-        <hr style="border-color: rgba(255,255,255,0.05); margin: 30px 0;">
-        <h3 style="color:#f8fafc; font-weight:700;">3. Data Flow Pipeline</h3>
-        <p style="color:#94a3b8; font-size:15px; line-height:1.7;">When a payload is injected into the system, it undergoes a stringent multi-tier analysis: <br><b>Ingestion -> Sanitization (RegEx/Stopwords) -> Vectorization -> Probability Scoring -> LLM Contextualization -> User Dashboard.</b><br>All operations occur within a sandboxed environment to prevent arbitrary code execution on the host machine.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -209,7 +207,6 @@ def show_contact_page():
     </style>
     """, unsafe_allow_html=True)
     
-    # Native Streamlit Form utilizing custom CSS for inline icons
     col1, col2 = st.columns([1.2, 1], gap="large")
     
     with col1:
@@ -246,7 +243,6 @@ def show_contact_page():
         st.markdown("</div>", unsafe_allow_html=True)
                     
     with col2:
-        # Decorative illustration for visual alignment
         st.markdown("""
         <div style="height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px;">
             <img src="https://img.freepik.com/free-vector/email-campaign-concept-illustration_114360-1633.jpg?w=740&t=st=1708849495~exp=1708850095~hmac=62d988d4073e527d42ea04581c8d50b4f8d3876101c518fb145520977224f8d4" style="width: 100%; max-width: 400px; border-radius: 20px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));" alt="Contact Illustration">
