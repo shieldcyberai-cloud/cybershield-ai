@@ -808,16 +808,19 @@ else:
         st.markdown("<div style='margin-bottom: 100px;'></div>", unsafe_allow_html=True) 
 
         # --- CUSTOM INLINE CHAT COMPONENT ---
-        c_upload, c_input, c_voice = st.columns([0.5, 7, 1.5])
+        c_upload, c_input, c_send, c_voice = st.columns([0.5, 6, 1, 1.5])
         
         with c_upload:
             chat_img = st.file_uploader("Upload", type=["jpg", "png", "jpeg"], key="inline_vision", label_visibility="collapsed")
             if chat_img and "img_toast" not in st.session_state:
-                st.toast("📎 Image Data Buffered. Input prompt and press 'Enter' to transmit.")
+                st.toast("📎 Image Data Buffered. Input prompt and press 'Enter' or 'Send' to transmit.")
                 st.session_state["img_toast"] = True
                 
         with c_input:
             txt_input = st.text_input("Message", key="inline_txt", label_visibility="collapsed", placeholder="Ask anything", autocomplete="off", on_change=submit_chat)
+            
+        with c_send:
+            st.button("➤", key="btn_send_arrow", type="primary", on_click=submit_chat)
             
         with c_voice:
             voice_input = listen() if st.button("ılı Voice", key="btn_voice", type="primary") else None
