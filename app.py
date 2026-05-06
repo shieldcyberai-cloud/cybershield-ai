@@ -111,7 +111,7 @@ st.markdown(f"""
         
         {bg_css}
         
-        /* File Uploader ko clean + icon button banane ke liye */
+        
         [data-testid="stFileUploader"] section {{
             padding: 0px !important;
             min-height: 0px !important;
@@ -119,14 +119,14 @@ st.markdown(f"""
             border: none !important;
         }}
         
-        /* Default cloud icon aur drag-drop text ko hide karne ke liye */
+       
         [data-testid="stFileUploader"] section > div > div > svg, 
         [data-testid="stFileUploader"] section > div > div > span, 
         [data-testid="stFileUploader"] section > div > div > small {{
             display: none !important; 
         }}
         
-        /* 'Browse Files' button ko gol + icon mein badalna */
+   
         [data-testid="stFileUploader"] button {{
             width: 45px !important;
             height: 45px !important;
@@ -140,7 +140,7 @@ st.markdown(f"""
             justify-content: center !important;
         }}
         
-        /* Button ke upar sirf Plus (+) icon lagana */
+       
         [data-testid="stFileUploader"] button::after {{
             content: '➕' !important; 
             font-size: 20px !important;
@@ -379,6 +379,30 @@ st.markdown(f"""
         }}
     }}
 </style>
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+    <style>
+        #MainMenu {visibility: hidden;}
+        header {visibility: hidden;}
+        footer {visibility: hidden;}
+        .block-container {
+            padding-top: 1rem !important;
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+            padding-bottom: 1rem !important;
+            max-width: 100% !important;
+        }
+        .stChatMessage {
+            padding: 10px !important;
+            border-radius: 15px !important;
+        }
+        div[data-testid="stForm"] {
+            border: none !important;
+            padding: 0 !important;
+        }
+    </style>
 """, unsafe_allow_html=True)
 
 # --- CORE FUNCTIONS ---
