@@ -582,7 +582,9 @@ if not st.session_state['logged_in']:
                             st.session_state['user_info'] = user
                             db_chats = get_user_chats(user['id'])
                             st.session_state['messages'] = [{"role": ("user" if c['role']=="user" else "model"), "parts": [c['message']]} for c in db_chats]
-                            st.rerun()
+                            
+                            # 🔥 YEH WALI LINE UPDATE KI HAI DASHBOARD PAR BHEJNE KE LIYE
+                            st.switch_page("dashboard.py")
                         else: 
                             st.error("Authentication Denied.")
                     
@@ -618,7 +620,7 @@ if not st.session_state['logged_in']:
                 <h3 style='margin:0; font-weight: 800;'>CyberShield<span style='color:#38bdf8;'>.AI</span></h3>
             </div>
             """, unsafe_allow_html=True)
-        with nav_spacer: st.write("") 
+        with nav_spacer: st.write("")
         
         with nav_c2:
             st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
