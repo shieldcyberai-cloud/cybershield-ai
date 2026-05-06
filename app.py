@@ -86,7 +86,7 @@ def submit_chat():
 # 🎨 DYNAMIC CSS (WITH MOBILE RESPONSIVENESS)
 # ==================================================
 bg_css = ""
-if not st.session_state['logged_in'] and st.session_state['public_page'] == "home":
+if not st.session_state.get('logged_in', False) and st.session_state.get('public_page', '') == "home":
     bg_css = """
     .stApp { 
         background: linear-gradient(135deg, rgba(2, 6, 23, 0.85) 0%, rgba(9, 9, 11, 0.85) 100%), 
@@ -104,25 +104,30 @@ else:
         background-attachment: fixed;
     }
     """
-st.markdown("""
+
+st.markdown(f"""
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
+        {bg_css}
+        
         /* File Uploader ko clean + icon button banane ke liye */
-        [data-testid="stFileUploader"] section {
+        [data-testid="stFileUploader"] section {{
             padding: 0px !important;
             min-height: 0px !important;
             background: transparent !important;
             border: none !important;
-        }
+        }}
         
         /* Default cloud icon aur drag-drop text ko hide karne ke liye */
         [data-testid="stFileUploader"] section > div > div > svg, 
         [data-testid="stFileUploader"] section > div > div > span, 
-        [data-testid="stFileUploader"] section > div > div > small {
+        [data-testid="stFileUploader"] section > div > div > small {{
             display: none !important; 
-        }
+        }}
         
         /* 'Browse Files' button ko gol + icon mein badalna */
-        [data-testid="stFileUploader"] button {
+        [data-testid="stFileUploader"] button {{
             width: 45px !important;
             height: 45px !important;
             border-radius: 50% !important;
@@ -133,27 +138,25 @@ st.markdown("""
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-        }
+        }}
         
         /* Button ke upar sirf Plus (+) icon lagana */
-        [data-testid="stFileUploader"] button::after {
+        [data-testid="stFileUploader"] button::after {{
             content: '➕' !important; 
             font-size: 20px !important;
             visibility: visible !important;
-        }
-    """
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-    
-    {bg_css}
-    
-    h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
-    
-    .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div {{ 
-        background-color: #1e293b !important;  /* Ye solid dark background dega */
-        color: #ffffff !important;            /* Ye text ko pure white karega */
-        border: 1px solid rgba(255, 255, 255, 0.2) !important; 
-        border-radius: 12px;
-    }}
+        }}
+        
+        h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
+        
+        .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div {{ 
+            background-color: #1e293b !important;  
+            color: #ffffff !important;            
+            border: 1px solid rgba(255, 255, 255, 0.2) !important; 
+            border-radius: 12px;
+        }}
+    </style>
+""", unsafe_allow_html=True)
     
     .stChatMessage {{ 
         border: 1px solid rgba(255, 255, 255, 0.05); 
