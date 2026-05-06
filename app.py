@@ -107,6 +107,41 @@ else:
 
 st.markdown(f"""
 <style>
+        /* File Uploader ko clean + icon button banane ke liye */
+        [data-testid="stFileUploader"] section {
+            padding: 0px !important;
+            min-height: 0px !important;
+            background: transparent !important;
+            border: none !important;
+        }
+        
+        /* Default cloud icon aur drag-drop text ko hide karne ke liye */
+        [data-testid="stFileUploader"] section > div > div > svg, 
+        [data-testid="stFileUploader"] section > div > div > span, 
+        [data-testid="stFileUploader"] section > div > div > small {
+            display: none !important; 
+        }
+        
+        /* 'Browse Files' button ko gol + icon mein badalna */
+        [data-testid="stFileUploader"] button {
+            width: 45px !important;
+            height: 45px !important;
+            border-radius: 50% !important;
+            padding: 0 !important;
+            font-size: 0px !important; /* Pura text gayab kar dega */
+            background-color: #1e293b !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        /* Button ke upar sirf Plus (+) icon lagana */
+        [data-testid="stFileUploader"] button::after {
+            content: '➕' !important; 
+            font-size: 20px !important;
+            visibility: visible !important;
+        }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
     
     {bg_css}
