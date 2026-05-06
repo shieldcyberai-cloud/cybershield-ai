@@ -155,8 +155,6 @@ st.markdown(f"""
             border: 1px solid rgba(255, 255, 255, 0.2) !important; 
             border-radius: 12px;
         }}
-    </style>
-""", unsafe_allow_html=True)
     
     .stChatMessage {{ 
         border: 1px solid rgba(255, 255, 255, 0.05); 
