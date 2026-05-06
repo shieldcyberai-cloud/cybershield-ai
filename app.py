@@ -83,6 +83,13 @@ def submit_chat():
     st.session_state['inline_txt'] = ""
 
 # ==================================================
+# 🏠 DASHBOARD BUTTON (Sabse upar add karein)
+# ==================================================
+if st.button("🏠 Back to Dashboard"):
+    # "dashboard.py" ko apni actual file ke naam se change kar lena
+    st.switch_page("dashboard.py") 
+
+# ==================================================
 # 🎨 DYNAMIC CSS (WITH MOBILE RESPONSIVENESS)
 # ==================================================
 bg_css = ""
@@ -111,22 +118,137 @@ st.markdown(f"""
         
         {bg_css}
         
+        /* ==================================================
+           🚀 GLOBAL UI FIXES
+           ================================================== */
+        #MainMenu {{visibility: hidden;}}
+        header {{visibility: hidden;}}
+        footer {{visibility: hidden;}}
         
+        .block-container {{
+            padding-top: 1rem !important;
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+            padding-bottom: 90px !important;
+            max-width: 100% !important;
+        }}
+        
+        div[data-testid="stForm"] {{
+            border: none !important;
+            padding: 0 !important;
+        }}
+        
+        h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
+        
+        .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div {{ 
+            background-color: #1e293b !important;  
+            color: #ffffff !important;            
+            border: 1px solid rgba(255, 255, 255, 0.2) !important; 
+            border-radius: 12px;
+        }}
+    
+        .stChatMessage {{ 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 16px; 
+            padding: 10px !important; 
+            margin-bottom: 15px; 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(10px);
+        }}
+        
+        button[kind="secondary"] {{
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: #cbd5e1 !important;
+            font-weight: 600 !important;
+            font-size: 16px !important;
+            padding: 5px 10px !important;
+        }}
+        button[kind="secondary"]:hover {{
+            color: #38bdf8 !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-radius: 8px !important;
+        }}
+
+        button[kind="primary"] {{ 
+            width: 100%; 
+            border-radius: 12px !important; 
+            font-weight: 600 !important; 
+            background: linear-gradient(135deg, #0ea5e9, #4f46e5) !important; 
+            color: white !important; 
+            border: none !important;
+        }}
+        button[kind="primary"]:hover {{ 
+            transform: translateY(-2px) !important;
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4) !important; 
+        }}
+
+        div[role="radiogroup"] {{
+            flex-direction: row;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }}
+        div[role="radiogroup"] > label > div:first-child {{ display: none; }}
+        div[role="radiogroup"] > label {{
+            padding: 10px 20px !important;
+            background: rgba(255,255,255,0.05) !important;
+            border-radius: 30px !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            cursor: pointer;
+        }}
+        div[role="radiogroup"] > label[data-checked="true"] {{
+            background: rgba(14, 165, 233, 0.2) !important;
+            border-color: #0ea5e9 !important;
+            color: #38bdf8 !important;
+        }}
+
+        [data-testid="stSidebar"] {{ 
+            background-color: rgba(2, 6, 23, 0.95) !important; 
+            border-right: 1px solid rgba(255,255,255,0.05); 
+        }}
+        
+        .glass-card {{
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }}
+        
+        .hero-title {{
+            background: linear-gradient(to right, #ffffff, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }}
+
+        /* ==================================================
+           🚀 CHAT INPUT & UPLOAD BUTTON FIXES
+           ================================================== */
+        [data-testid="stFileUploader"] {{
+            width: 55px !important;
+            min-width: 55px !important;
+            flex: none !important;
+            margin-bottom: 0px !important;
+        }}
         [data-testid="stFileUploader"] section {{
             padding: 0px !important;
             min-height: 0px !important;
             background: transparent !important;
             border: none !important;
         }}
-        
-       
         [data-testid="stFileUploader"] section > div > div > svg, 
         [data-testid="stFileUploader"] section > div > div > span, 
         [data-testid="stFileUploader"] section > div > div > small {{
             display: none !important; 
         }}
-        
-   
         [data-testid="stFileUploader"] button {{
             width: 45px !important;
             height: 45px !important;
@@ -139,293 +261,173 @@ st.markdown(f"""
             align-items: center !important;
             justify-content: center !important;
         }}
-        
-       
         [data-testid="stFileUploader"] button::after {{
             content: '➕' !important; 
             font-size: 20px !important;
             visibility: visible !important;
         }}
-        
-        h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
-        
-        .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div {{ 
-            background-color: #1e293b !important;  
-            color: #ffffff !important;            
-            border: 1px solid rgba(255, 255, 255, 0.2) !important; 
-            border-radius: 12px;
-        }}
-    
-    .stChatMessage {{ 
-        border: 1px solid rgba(255, 255, 255, 0.05); 
-        border-radius: 16px; 
-        padding: 15px; 
-        margin-bottom: 15px; 
-        background: rgba(255, 255, 255, 0.03); 
-        backdrop-filter: blur(10px);
-    }}
-    
-    button[kind="secondary"] {{
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        color: #cbd5e1 !important;
-        font-weight: 600 !important;
-        font-size: 16px !important;
-        padding: 5px 10px !important;
-    }}
-    button[kind="secondary"]:hover {{
-        color: #38bdf8 !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border-radius: 8px !important;
-    }}
 
-    button[kind="primary"] {{ 
-        width: 100%; 
-        border-radius: 12px !important; 
-        font-weight: 600 !important; 
-        background: linear-gradient(135deg, #0ea5e9, #4f46e5) !important; 
-        color: white !important; 
-        border: none !important;
-    }}
-    button[kind="primary"]:hover {{ 
-        transform: translateY(-2px) !important;
-        box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4) !important; 
-    }}
-
-    div[role="radiogroup"] {{
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-        margin-bottom: 20px;
-    }}
-    div[role="radiogroup"] > label > div:first-child {{ display: none; }}
-    div[role="radiogroup"] > label {{
-        padding: 10px 20px !important;
-        background: rgba(255,255,255,0.05) !important;
-        border-radius: 30px !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
-        cursor: pointer;
-    }}
-    div[role="radiogroup"] > label[data-checked="true"] {{
-        background: rgba(14, 165, 233, 0.2) !important;
-        border-color: #0ea5e9 !important;
-        color: #38bdf8 !important;
-    }}
-
-    [data-testid="stSidebar"] {{ 
-        background-color: rgba(2, 6, 23, 0.95) !important; 
-        border-right: 1px solid rgba(255,255,255,0.05); 
-    }}
-    
-    .glass-card {{
-        background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
-        padding: 30px;
-        backdrop-filter: blur(10px);
-        margin-bottom: 20px;
-    }}
-    
-    .hero-title {{
-        background: linear-gradient(to right, #ffffff, #38bdf8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 5rem;
-        font-weight: 800;
-        text-align: center;
-        margin-bottom: 10px;
-        line-height: 1.1;
-    }}
-
-    /* ==================================================
-       🚀 CUSTOM INLINE CHAT COMPONENT
-       ================================================== */
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
-        position: fixed !important;
-        bottom: 25px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 90% !important;
-        max-width: 800px !important;
-        background-color: #2f3136 !important; 
-        border-radius: 30px !important;
-        padding: 6px 10px !important;
-        z-index: 9999 !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        flex-wrap: nowrap !important;
-        gap: 5px !important;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important;
-        border: 1px solid rgba(255,255,255,0.03) !important;
-    }}
-
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] {{
-        width: auto !important;
-        flex: 0 0 auto !important;
-        min-width: 0 !important;
-        padding: 0 !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(2) {{
-        flex: 1 1 100% !important; 
-    }}
-
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {{
-        width: 40px !important;
-        height: 40px !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section {{
-        padding: 0 !important;
-        background: transparent !important;
-        border: none !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section > div,
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section > small,
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploaderDropzoneInstructions"],
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] svg {{
-        display: none !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button {{
-        background: transparent !important;
-        border: none !important;
-        color: transparent !important;
-        width: 40px !important;
-        height: 40px !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        position: relative;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button::after {{
-        content: "＋";
-        font-size: 26px !important;
-        font-weight: 300 !important;
-        color: #a1a1aa !important;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        visibility: visible !important;
-    }}
-
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
-        border: none !important;
-        background: transparent !important;
-        color: #f8fafc !important;
-        padding-left: 10px !important;
-        box-shadow: none !important;
-        font-size: 15px !important;
-        height: 40px !important;
-        outline: none !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input:focus {{
-        border: none !important;
-        box-shadow: none !important;
-    }}
-
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {{
-        background: #404249 !important; 
-        color: #f8fafc !important;
-        border-radius: 20px !important;
-        padding: 0 14px !important;
-        height: 36px !important;
-        border: none !important;
-        font-size: 13px !important;
-        font-weight: 600 !important;
-    }}
-
-    /* ==================================================
-       📱 MOBILE RESPONSIVE FIXES 
-       ================================================== */
-    @media (max-width: 768px) {{
-        .hero-title {{
-            font-size: 2.8rem !important;
-            margin-top: 20px !important;
-        }}
-        p {{
-            font-size: 1rem !important;
-        }}
-        .glass-card {{
-            padding: 20px !important;
-            margin-bottom: 10px !important;
-        }}
-        /* Fix Navigation buttons stacking and sizing on mobile */
-        div[data-testid="column"] {{
-            text-align: center !important;
-            margin-bottom: 10px !important;
-        }}
-        button[kind="secondary"], button[kind="primary"] {{
+        [data-testid="stChatInput"] {{
+            flex-grow: 1 !important;
             width: 100% !important;
-            margin: 0 auto !important;
         }}
-        /* Fix Chat Input Bar on mobile */
+
+        /* ==================================================
+           🚀 CUSTOM INLINE CHAT COMPONENT
+           ================================================== */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
-            width: 95% !important;
-            bottom: 15px !important;
-            padding: 4px 6px !important;
+            position: fixed !important;
+            bottom: 25px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 90% !important;
+            max-width: 800px !important;
+            background-color: #2f3136 !important; 
+            border-radius: 30px !important;
+            padding: 6px 10px !important;
+            z-index: 9999 !important;
+            display: flex !important;
             flex-direction: row !important;
+            align-items: center !important;
             flex-wrap: nowrap !important;
+            gap: 5px !important;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important;
+            border: 1px solid rgba(255,255,255,0.03) !important;
         }}
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
-            font-size: 14px !important;
-            padding-left: 5px !important;
-        }}
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {{
-            padding: 0 10px !important;
-            font-size: 12px !important;
-            height: 32px !important;
-        }}
-    }}
-</style>
-""", unsafe_allow_html=True)
 
-
-st.markdown("""
-    <style>
-        #MainMenu {visibility: hidden;}
-        header {visibility: hidden;}
-        footer {visibility: hidden;}
-        .block-container {
-            padding-top: 1rem !important;
-            padding-left: 0.5rem !important;
-            padding-right: 0.5rem !important;
-            padding-bottom: 1rem !important;
-            max-width: 100% !important;
-        }
-        .stChatMessage {
-            padding: 10px !important;
-            border-radius: 15px !important;
-        }
-        div[data-testid="stForm"] {
-            border: none !important;
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] {{
+            width: auto !important;
+            flex: 0 0 auto !important;
+            min-width: 0 !important;
             padding: 0 !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
+        }}
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(2) {{
+            flex: 1 1 100% !important; 
+        }}
 
-st.markdown("""
-    <style>
-        @media screen and (max-width: 768px) {
-            [data-testid="stChatInput"] {
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {{
+            width: 40px !important;
+            height: 40px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }}
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section {{
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }}
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section > div,
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section > small,
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploaderDropzoneInstructions"],
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] svg {{
+            display: none !important;
+        }}
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button {{
+            background: transparent !important;
+            border: none !important;
+            color: transparent !important;
+            width: 40px !important;
+            height: 40px !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            position: relative;
+        }}
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button::after {{
+            content: "＋";
+            font-size: 26px !important;
+            font-weight: 300 !important;
+            color: #a1a1aa !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            visibility: visible !important;
+        }}
+
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
+            border: none !important;
+            background: transparent !important;
+            color: #f8fafc !important;
+            padding-left: 10px !important;
+            box-shadow: none !important;
+            font-size: 15px !important;
+            height: 40px !important;
+            outline: none !important;
+        }}
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input:focus {{
+            border: none !important;
+            box-shadow: none !important;
+        }}
+
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {{
+            background: #404249 !important; 
+            color: #f8fafc !important;
+            border-radius: 20px !important;
+            padding: 0 14px !important;
+            height: 36px !important;
+            border: none !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+        }}
+
+        /* ==================================================
+           📱 MOBILE RESPONSIVE FIXES 
+           ================================================== */
+        @media (max-width: 768px) {{
+            .hero-title {{
+                font-size: 2.8rem !important;
+                margin-top: 20px !important;
+            }}
+            p {{
+                font-size: 1rem !important;
+            }}
+            .glass-card {{
+                padding: 20px !important;
+                margin-bottom: 10px !important;
+            }}
+            div[data-testid="column"] {{
+                width: auto !important;
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+                text-align: center !important;
+                margin-bottom: 10px !important;
+            }}
+            button[kind="secondary"], button[kind="primary"] {{
+                width: 100% !important;
+                margin: 0 auto !important;
+            }}
+            
+            div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
+                width: 95% !important;
+                bottom: 15px !important;
+                padding: 4px 6px !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+            }}
+            div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
+                font-size: 14px !important;
+                padding-left: 5px !important;
+            }}
+            div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {{
+                padding: 0 10px !important;
+                font-size: 12px !important;
+                height: 32px !important;
+            }}
+
+            [data-testid="stChatInput"] {{
                 padding-left: 10px !important;
                 padding-right: 10px !important;
                 padding-bottom: 10px !important;
                 bottom: 0px !important;
                 background-color: transparent !important;
-            }
-            [data-testid="stChatInput"] > div {
+            }}
+            [data-testid="stChatInput"] > div {{
                 border-radius: 25px !important;
                 border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            }
-            .block-container {
-                padding-bottom: 90px !important;
-            }
-        }
+            }}
+        }}
     </style>
 """, unsafe_allow_html=True)
-
 # --- CORE FUNCTIONS ---
 def clean_text_for_speech(text):
     if not text: return ""
