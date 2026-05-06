@@ -816,11 +816,16 @@ else:
                 st.toast("📎 Image Data Buffered. Input prompt and press 'Enter' or 'Send' to transmit.")
                 st.session_state["img_toast"] = True
                 
+        # Naya wrapper function double-fire issue rokne ke liye
+        def safe_submit():
+            if st.session_state.inline_txt and st.session_state.inline_txt.strip() != "":
+                submit_chat()
+
         with c_input:
-            txt_input = st.text_input("Message", key="inline_txt", label_visibility="collapsed", placeholder="Ask anything", autocomplete="off", on_change=submit_chat)
+            txt_input = st.text_input("Message", key="inline_txt", label_visibility="collapsed", placeholder="Ask anything", autocomplete="off", on_change=safe_submit)
             
         with c_send:
-            st.button("➤", key="btn_send_arrow", type="primary", on_click=submit_chat)
+            st.button("➤", key="btn_send_arrow", type="primary", on_click=safe_submit)
             
         with c_voice:
             voice_input = listen() if st.button("ılı Voice", key="btn_voice", type="primary") else None
