@@ -104,9 +104,8 @@ else:
         background-attachment: fixed;
     }
     """
-
-st.markdown(f"""
-<style>
+st.markdown("""
+    <style>
         /* File Uploader ko clean + icon button banane ke liye */
         [data-testid="stFileUploader"] section {
             padding: 0px !important;
@@ -128,7 +127,7 @@ st.markdown(f"""
             height: 45px !important;
             border-radius: 50% !important;
             padding: 0 !important;
-            font-size: 0px !important; /* Pura text gayab kar dega */
+            font-size: 0px !important; 
             background-color: #1e293b !important;
             border: 1px solid rgba(255, 255, 255, 0.2) !important;
             display: flex !important;
@@ -142,6 +141,7 @@ st.markdown(f"""
             font-size: 20px !important;
             visibility: visible !important;
         }
+    """
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
     
     {bg_css}
