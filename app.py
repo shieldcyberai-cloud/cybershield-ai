@@ -405,6 +405,27 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+    <style>
+        @media screen and (max-width: 768px) {
+            [data-testid="stChatInput"] {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                padding-bottom: 10px !important;
+                bottom: 0px !important;
+                background-color: transparent !important;
+            }
+            [data-testid="stChatInput"] > div {
+                border-radius: 25px !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            }
+            .block-container {
+                padding-bottom: 90px !important;
+            }
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # --- CORE FUNCTIONS ---
 def clean_text_for_speech(text):
     if not text: return ""
