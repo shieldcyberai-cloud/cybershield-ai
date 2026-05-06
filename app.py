@@ -114,9 +114,9 @@ st.markdown(f"""
     h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
     
     .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div {{ 
-        background-color: rgba(255, 255, 255, 0.05) !important; 
-        color: #e2e8f0 !important; 
-        border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+        background-color: #1e293b !important;  /* Ye solid dark background dega */
+        color: #ffffff !important;            /* Ye text ko pure white karega */
+        border: 1px solid rgba(255, 255, 255, 0.2) !important; 
         border-radius: 12px;
     }}
     
