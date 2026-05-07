@@ -174,7 +174,7 @@ head_c1, head_c2 = st.columns([1.5, 3.5])
 with head_c1:
     # High quality Cyber / Matrix code scanning image
     st.markdown("""
-        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" class="cyber-image">
+        <img src="https://www.keepitrealonline.govt.nz/__data/assets/image/0021/45642/Spam,-scams,-maleware-and-phishing.png" class="cyber-image">
     """, unsafe_allow_html=True)
     
 with head_c2:
