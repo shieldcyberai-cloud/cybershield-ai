@@ -106,10 +106,14 @@ else:
     """
 
 st.markdown(f"""
+st.markdown(f"""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
     
     {bg_css}
+    
+    /* 🚀 YEH LINE SIDEBAR SE 'APP' AUR 'DASHBOARD' HATA DEGI */
+    [data-testid="stSidebarNav"] {{ display: none !important; }}
     
     h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
     
@@ -315,7 +319,6 @@ st.markdown(f"""
             padding: 20px !important;
             margin-bottom: 10px !important;
         }}
-        /* Fix Navigation buttons stacking and sizing on mobile */
         div[data-testid="column"] {{
             text-align: center !important;
             margin-bottom: 10px !important;
@@ -324,14 +327,26 @@ st.markdown(f"""
             width: 100% !important;
             margin: 0 auto !important;
         }}
-        /* Fix Chat Input Bar on mobile */
+        
+        /* 🔧 YAHAN CHAT INPUT BAR KO UPAR KIYA HAI AUR FIX KIYA HAI */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
             width: 95% !important;
-            bottom: 15px !important;
+            bottom: 45px !important; /* 'Manage app' button se upar karne ke liye margin badhaya */
             padding: 4px 6px !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
         }}
+        
+        /* Upload text hide karne ka extra lock */
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {{
+            width: 35px !important; 
+        }}
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] small,
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] div {{
+            display: none !important;
+            color: transparent !important;
+        }}
+        
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
             font-size: 14px !important;
             padding-left: 5px !important;
@@ -343,6 +358,7 @@ st.markdown(f"""
         }}
     }}
 </style>
+""", unsafe_allow_html=True)
 """, unsafe_allow_html=True)
 
 # --- CORE FUNCTIONS ---
