@@ -105,34 +105,31 @@ else:
     }
     """
 
-st.markdown(f"""
-st.markdown(f"""
-<style>
+st.markdown("<style>\n" + bg_css + """
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
     
-    {bg_css}
+    /* YEH LINE SIDEBAR SE 'APP' AUR 'DASHBOARD' HATA DEGI */
+    [data-testid="stSidebarNav"] { display: none !important; }
     
-    [data-testid="stSidebarNav"] {{ display: none !important; }}
+    h1, h2, h3, h4, h5, h6, p, span, li { font-family: 'Inter', sans-serif; color: #f8fafc; }
     
-    h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
-    
-    .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div {{ 
+    .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div { 
         background-color: rgba(255, 255, 255, 0.05) !important; 
         color: #e2e8f0 !important; 
         border: 1px solid rgba(255, 255, 255, 0.1) !important; 
         border-radius: 12px;
-    }}
+    }
     
-    .stChatMessage {{ 
+    .stChatMessage { 
         border: 1px solid rgba(255, 255, 255, 0.05); 
         border-radius: 16px; 
         padding: 15px; 
         margin-bottom: 15px; 
         background: rgba(255, 255, 255, 0.03); 
         backdrop-filter: blur(10px);
-    }}
+    }
     
-    button[kind="secondary"] {{
+    button[kind="secondary"] {
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
@@ -140,61 +137,61 @@ st.markdown(f"""
         font-weight: 600 !important;
         font-size: 16px !important;
         padding: 5px 10px !important;
-    }}
-    button[kind="secondary"]:hover {{
+    }
+    button[kind="secondary"]:hover {
         color: #38bdf8 !important;
         background: rgba(255, 255, 255, 0.05) !important;
         border-radius: 8px !important;
-    }}
+    }
 
-    button[kind="primary"] {{ 
+    button[kind="primary"] { 
         width: 100%; 
         border-radius: 12px !important; 
         font-weight: 600 !important; 
         background: linear-gradient(135deg, #0ea5e9, #4f46e5) !important; 
         color: white !important; 
         border: none !important;
-    }}
-    button[kind="primary"]:hover {{ 
+    }
+    button[kind="primary"]:hover { 
         transform: translateY(-2px) !important;
         box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4) !important; 
-    }}
+    }
 
-    div[role="radiogroup"] {{
+    div[role="radiogroup"] {
         flex-direction: row;
         justify-content: center;
         gap: 15px;
         margin-bottom: 20px;
-    }}
-    div[role="radiogroup"] > label > div:first-child {{ display: none; }}
-    div[role="radiogroup"] > label {{
+    }
+    div[role="radiogroup"] > label > div:first-child { display: none; }
+    div[role="radiogroup"] > label {
         padding: 10px 20px !important;
         background: rgba(255,255,255,0.05) !important;
         border-radius: 30px !important;
         border: 1px solid rgba(255,255,255,0.1) !important;
         cursor: pointer;
-    }}
-    div[role="radiogroup"] > label[data-checked="true"] {{
+    }
+    div[role="radiogroup"] > label[data-checked="true"] {
         background: rgba(14, 165, 233, 0.2) !important;
         border-color: #0ea5e9 !important;
         color: #38bdf8 !important;
-    }}
+    }
 
-    [data-testid="stSidebar"] {{ 
+    [data-testid="stSidebar"] { 
         background-color: rgba(2, 6, 23, 0.95) !important; 
         border-right: 1px solid rgba(255,255,255,0.05); 
-    }}
+    }
     
-    .glass-card {{
+    .glass-card {
         background: rgba(255,255,255,0.02);
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-radius: 20px;
         padding: 30px;
         backdrop-filter: blur(10px);
         margin-bottom: 20px;
-    }}
+    }
     
-    .hero-title {{
+    .hero-title {
         background: linear-gradient(to right, #ffffff, #38bdf8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -203,9 +200,9 @@ st.markdown(f"""
         text-align: center;
         margin-bottom: 10px;
         line-height: 1.1;
-    }}
+    }
 
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {
         position: fixed !important;
         bottom: 25px !important;
         left: 50% !important;
@@ -223,36 +220,36 @@ st.markdown(f"""
         gap: 5px !important;
         box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important;
         border: 1px solid rgba(255,255,255,0.03) !important;
-    }}
+    }
 
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] {{
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] {
         width: auto !important;
         flex: 0 0 auto !important;
         min-width: 0 !important;
         padding: 0 !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(2) {{
+    }
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(2) {
         flex: 1 1 100% !important; 
-    }}
+    }
 
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {{
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {
         width: 40px !important;
         height: 40px !important;
         padding: 0 !important;
         margin: 0 !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section {{
+    }
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section {
         padding: 0 !important;
         background: transparent !important;
         border: none !important;
-    }}
+    }
     div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section > div,
     div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] section > small,
     div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploaderDropzoneInstructions"],
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] svg {{
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] svg {
         display: none !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button {{
+    }
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button {
         background: transparent !important;
         border: none !important;
         color: transparent !important;
@@ -261,8 +258,8 @@ st.markdown(f"""
         padding: 0 !important;
         box-shadow: none !important;
         position: relative;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button::after {{
+    }
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button::after {
         content: "＋";
         font-size: 26px !important;
         font-weight: 300 !important;
@@ -272,9 +269,9 @@ st.markdown(f"""
         left: 50%;
         transform: translate(-50%, -50%);
         visibility: visible !important;
-    }}
+    }
 
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {
         border: none !important;
         background: transparent !important;
         color: #f8fafc !important;
@@ -283,13 +280,13 @@ st.markdown(f"""
         font-size: 15px !important;
         height: 40px !important;
         outline: none !important;
-    }}
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input:focus {{
+    }
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input:focus {
         border: none !important;
         box-shadow: none !important;
-    }}
+    }
 
-    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {{
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {
         background: #404249 !important; 
         color: #f8fafc !important;
         border-radius: 20px !important;
@@ -298,55 +295,59 @@ st.markdown(f"""
         border: none !important;
         font-size: 13px !important;
         font-weight: 600 !important;
-    }}
+    }
 
-    @media (max-width: 768px) {{
-        .hero-title {{
+    @media (max-width: 768px) {
+        .hero-title {
             font-size: 2.8rem !important;
             margin-top: 20px !important;
-        }}
-        p {{
+        }
+        p {
             font-size: 1rem !important;
-        }}
-        .glass-card {{
+        }
+        .glass-card {
             padding: 20px !important;
             margin-bottom: 10px !important;
-        }}
-        div[data-testid="column"] {{
+        }
+        div[data-testid="column"] {
             text-align: center !important;
             margin-bottom: 10px !important;
-        }}
-        button[kind="secondary"], button[kind="primary"] {{
+        }
+        button[kind="secondary"], button[kind="primary"] {
             width: 100% !important;
             margin: 0 auto !important;
-        }}
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
+        }
+        
+        /* MOBILE PAR CHAT INPUT BAR FIX */
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {
             width: 95% !important;
-            bottom: 45px !important;
+            bottom: 45px !important; 
             padding: 4px 6px !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
-        }}
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {{
+        }
+        
+        /* UPLOAD BUTTON MOBILE FIX */
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {
             width: 35px !important; 
-        }}
+        }
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] small,
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] div {{
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] div {
             display: none !important;
             color: transparent !important;
-        }}
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
+        }
+        
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {
             font-size: 14px !important;
             padding-left: 5px !important;
-        }}
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {{
+        }
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {
             padding: 0 10px !important;
             font-size: 12px !important;
             height: 32px !important;
-        }}
-    }}
+        }
+    }
 </style>
-""", unsafe_allow_html=True)
 """, unsafe_allow_html=True)
 
 # --- CORE FUNCTIONS ---
