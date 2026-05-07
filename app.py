@@ -85,7 +85,7 @@ def submit_chat():
 # ==================================================
 # 🏠 DASHBOARD BUTTON 
 # ==================================================
-if st.button("🏠 Back to Dashboard",
+if st.button("🏠 Back to Dashboard", use_container_width=True, type="primary"):
     st.switch_page("pages/dashboard.py")  # ✅ "pages/" lagana hai
 
 # ==================================================
