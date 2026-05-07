@@ -112,7 +112,6 @@ st.markdown(f"""
     
     {bg_css}
     
-    /* 🚀 YEH LINE SIDEBAR SE 'APP' AUR 'DASHBOARD' HATA DEGI */
     [data-testid="stSidebarNav"] {{ display: none !important; }}
     
     h1, h2, h3, h4, h5, h6, p, span, li {{ font-family: 'Inter', sans-serif; color: #f8fafc; }}
@@ -206,9 +205,6 @@ st.markdown(f"""
         line-height: 1.1;
     }}
 
-    /* ==================================================
-       🚀 CUSTOM INLINE CHAT COMPONENT
-       ================================================== */
     div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
         position: fixed !important;
         bottom: 25px !important;
@@ -304,9 +300,6 @@ st.markdown(f"""
         font-weight: 600 !important;
     }}
 
-    /* ==================================================
-       📱 MOBILE RESPONSIVE FIXES 
-       ================================================== */
     @media (max-width: 768px) {{
         .hero-title {{
             font-size: 2.8rem !important;
@@ -327,17 +320,13 @@ st.markdown(f"""
             width: 100% !important;
             margin: 0 auto !important;
         }}
-        
-        /* 🔧 YAHAN CHAT INPUT BAR KO UPAR KIYA HAI AUR FIX KIYA HAI */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {{
             width: 95% !important;
-            bottom: 45px !important; /* 'Manage app' button se upar karne ke liye margin badhaya */
+            bottom: 45px !important;
             padding: 4px 6px !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
         }}
-        
-        /* Upload text hide karne ka extra lock */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {{
             width: 35px !important; 
         }}
@@ -346,7 +335,6 @@ st.markdown(f"""
             display: none !important;
             color: transparent !important;
         }}
-        
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {{
             font-size: 14px !important;
             padding-left: 5px !important;
