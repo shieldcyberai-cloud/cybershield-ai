@@ -584,7 +584,7 @@ if not st.session_state['logged_in']:
                             st.session_state['messages'] = [{"role": ("user" if c['role']=="user" else "model"), "parts": [c['message']]} for c in db_chats]
                             
                             # 🔥 YEH WALI LINE UPDATE KI HAI DASHBOARD PAR BHEJNE KE LIYE
-                            st.switch_page("dashboard.py")
+                            st.switch_page("pages/dashboard.py")
                         else: 
                             st.error("Authentication Denied.")
                     
