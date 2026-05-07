@@ -83,11 +83,10 @@ def submit_chat():
     st.session_state['inline_txt'] = ""
 
 # ==================================================
-# 🏠 DASHBOARD BUTTON (Sabse upar add karein)
+# 🏠 DASHBOARD BUTTON 
 # ==================================================
 if st.button("🏠 Back to Dashboard"):
-    # "dashboard.py" ko apni actual file ke naam se change kar lena
-    st.switch_page("dashboard.py") 
+    st.switch_page("pages/dashboard.py") 
 
 # ==================================================
 # 🎨 DYNAMIC CSS (WITH MOBILE RESPONSIVENESS)
@@ -583,7 +582,7 @@ if not st.session_state['logged_in']:
                             db_chats = get_user_chats(user['id'])
                             st.session_state['messages'] = [{"role": ("user" if c['role']=="user" else "model"), "parts": [c['message']]} for c in db_chats]
                             
-                            # 🔥 YEH WALI LINE UPDATE KI HAI DASHBOARD PAR BHEJNE KE LIYE
+                            
                             st.switch_page("pages/dashboard.py")
                         else: 
                             st.error("Authentication Denied.")
