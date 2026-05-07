@@ -4,7 +4,7 @@ import streamlit as st
 # 🔒 SECURITY CHECK: Bina login ke dashboard access roko
 # ==================================================
 if not st.session_state.get('logged_in', False):
-    st.switch_page("app.py") # Agar login nahi hai toh wapas app.py par bhej do
+    st.switch_page("app.py")
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(page_title="Dashboard | CyberShield AI", layout="wide", page_icon="📊")
@@ -16,12 +16,11 @@ st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
         
-        /* ==================================================
-           🚀 HIDING DEFAULT STREAMLIT NAVIGATION 
-           ( Yeh wo line hatayega jahan 'app' likha tha )
-           ================================================== */
+        /* Sidebar se default app/dashboard page links hatane ke liye */
         [data-testid="stSidebarNav"] { display: none !important; }
-        header { visibility: hidden !important; } /* Hides top bar breadcrumbs */
+        
+        /* Header ko transparent rakha hai taaki mobile ka menu (☰) button dikhta rahe */
+        header { background: transparent !important; } 
 
         .stApp { 
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
@@ -69,6 +68,7 @@ st.markdown("""
         .dash-card:hover {
             transform: translateY(-5px);
             border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.1);
         }
         
         .dash-number {
@@ -105,42 +105,40 @@ st.markdown("""
             align-items: center;
             gap: 15px;
         }
+
+        .cyber-image {
+            border-radius: 15px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+        }
         
         /* ==================================================
-           📱 MOBILE RESPONSIVE FIXES (Goals 1 & 3)
+           📱 MOBILE RESPONSIVE FIXES
            ================================================== */
         @media (max-width: 768px) {
             h1, .hero-title { font-size: 1.8rem !important; }
             .dash-number { font-size: 2rem !important; }
-            .dash-card { padding: 20px !important; margin-bottom: 10px !important;}
+            .dash-card { padding: 20px !important; margin-bottom: 15px !important;}
             
-            /* Stats columns stacking on mobile */
-            div[data-testid="stHorizontalBlock"]:has(.dash-card) {
-                display: block !important;
-            }
-            div[data-testid="column"]:has(.dash-card) {
-                width: 100% !important;
-                margin-bottom: 10px !important;
+            div[data-testid="stHorizontalBlock"] {
+                display: flex;
+                flex-direction: column;
             }
             
-            /* Sidebar Buttons Fix on Mobile (Taaki pink/red gradient button clean lage) */
-            [data-testid="stSidebar"] button {
-                height: 50px !important;
-                font-size: 14px !important;
-                padding: 0 10px !important;
-                width: 100% !important;
-            }
-            
-            /* Spacer to prevent overlap with manage app button */
-            [data-testid="stSidebar"] div:last-child {
-                margin-bottom: 80px !important;
+            .mobile-action-buttons {
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
         }
     </style>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# 📌 SIDEBAR NAVIGATION & PROFILE (Goal 1 Fix)
+# 📌 SIDEBAR NAVIGATION & PROFILE
 # ==================================================
 username = st.session_state.get('user_info', {}).get('username', 'Operator').upper()
 
@@ -155,37 +153,43 @@ with st.sidebar:
     
     st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
     
-    # NAVIGATION BUTTONS (Mobile scaling fixed via CSS)
-    if st.button("💬 Open AI Assistant", use_container_width=True, type="primary"):
+    if st.button("💬 Open AI Assistant", use_container_width=True, type="primary", key="side_ai"):
         st.switch_page("app.py")
         
-    if st.button("📊 Scan Reports", use_container_width=True):
+    if st.button("📊 Scan Reports", use_container_width=True, key="side_rep"):
         st.info("Reports section coming soon!")
         
-    # CSS Media query handles spacing on mobile automatically
+    st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # Logout
     if st.button("🚪 Logout", use_container_width=True):
         st.session_state['logged_in'] = False
         st.switch_page("app.py")
 
 # ==================================================
-# 🏠 MAIN DASHBOARD CONTENT (Goal 2 - Official & Detailed)
+# 🏠 MAIN DASHBOARD CONTENT
 # ==================================================
 
-# 1. Official Header & 3D AI Clip Placeholder
-head_c1, head_c2 = st.columns([1, 4])
+# 1. Official Header & Professional Digital Scan Image
+head_c1, head_c2 = st.columns([1.5, 3.5])
 with head_c1:
-    # 3D Security/AI Animation placeholder (Official feel)
+    # High quality Cyber / Matrix code scanning image
     st.markdown("""
-        <div style="background: rgba(14, 165, 233, 0.1); border-radius: 20px; padding: 15px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(56, 189, 248, 0.2);">
-            <img src="https://img1.picmix.com/output/stamp/normal/1/6/7/1/2561761_16694.gif" width="100%">
-        </div>
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" class="cyber-image">
     """, unsafe_allow_html=True)
     
 with head_c2:
-    st.markdown(f"<h1 style='margin-top:0;'>Welcome, Operative {username}! 🚀</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='color: #cbd5e1; font-size: 1.1rem; margin-top: -10px;'>CyberShield AI - Security Authorization Level 4. Operational Telemetry Overview.</p>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='margin-top:10px;'>Welcome, Operative {username}! 🚀</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #cbd5e1; font-size: 1.1rem;'>CyberShield AI - Security Authorization Level 4.<br>Operational Telemetry & Threat Defense Overview.</p>", unsafe_allow_html=True)
+
+# --- MOBILE FRIENDLY ACTION BUTTONS (DIRECTLY ON MAIN SCREEN) ---
+st.markdown("<div class='mobile-action-buttons'></div>", unsafe_allow_html=True)
+act_c1, act_c2, act_spacer = st.columns([1.5, 1.5, 2])
+with act_c1:
+    if st.button("💬 Launch Threat Scanner", use_container_width=True, type="primary"):
+        st.switch_page("app.py")
+with act_c2:
+    if st.button("📊 View Full Reports", use_container_width=True):
+         st.info("Analytics module compiling...")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -202,7 +206,6 @@ with col1:
     """, unsafe_allow_html=True)
 
 with col2:
-    # Threats detailed with red color
     st.markdown("""
         <div class="dash-card">
             <div class="dash-title">Threats Intercepted</div>
@@ -232,7 +235,7 @@ with up1:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    st.write("") # Spacer
+    st.markdown("<div style='margin-bottom: 10px;'></div>", unsafe_allow_html=True) 
 
 with up2:
     st.markdown("""
@@ -244,7 +247,3 @@ with up2:
             </div>
         </div>
     """, unsafe_allow_html=True)
-
-# Final "Official" image or banner at the bottom
-st.markdown("<br><hr style='border-color: rgba(255,255,255,0.05);'><br>", unsafe_allow_html=True)
-st.markdown("""<div style="text-align: center;"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" width="100%" style="border-radius: 15px; opacity: 0.3; border: 1px solid rgba(255,255,255,0.1); max-height:200px; object-fit:cover;"></div>""", unsafe_allow_html=True)
