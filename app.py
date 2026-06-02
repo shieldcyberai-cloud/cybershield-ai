@@ -327,15 +327,37 @@ st.markdown("<style>\n" + bg_css + """
         /* MOBILE PAR CHAT INPUT BAR FIX */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {
             width: 95% !important;
-            bottom: 45px !important; 
+            bottom: 20px !important; 
             padding: 4px 6px !important;
+            display: flex !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
+            align-items: center !important;
+            gap: 4px !important; 
         }
         
+        /* FORCE COLUMNS TO STAY IN ONE LINE ON MOBILE */
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] {
+            width: auto !important;
+            flex: 0 0 auto !important;
+            min-width: 0 !important;
+            padding: 0 !important;
+        }
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(2) {
+            flex: 1 1 auto !important; 
+            width: 100% !important;
+        }
+
         /* UPLOAD BUTTON MOBILE FIX */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {
-            width: 35px !important; 
+            width: 32px !important; 
+        }
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button {
+            width: 32px !important;
+            height: 32px !important;
+        }
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button::after {
+            font-size: 20px !important; 
         }
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] small,
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] div {
@@ -343,14 +365,20 @@ st.markdown("<style>\n" + bg_css + """
             color: transparent !important;
         }
         
+        /* TEXT INPUT & VOICE BUTTON MOBILE ADJUSTMENTS */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {
-            font-size: 14px !important;
-            padding-left: 5px !important;
+            font-size: 13px !important;
+            padding-left: 10px !important;
+            padding-right: 28px !important;
+            height: 34px !important;
+            background-size: 14px !important; 
+            background-position: right 8px center !important;
         }
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {
-            padding: 0 10px !important;
+            padding: 0 8px !important;
             font-size: 12px !important;
-            height: 32px !important;
+            height: 34px !important;
+            min-width: 55px !important; 
         }
     }
     /* 🔥 STREAMLIT KE DEFAULT BUTTON TEXT KO COMPLETELY HIDE KARNE KE LIYE */
