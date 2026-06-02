@@ -304,6 +304,7 @@ st.markdown("<style>\n" + bg_css + """
     }
 
     @media (max-width: 768px) {
+        /* Purane Mobile Styles (Hero Title, Cards, etc.) */
         .hero-title {
             font-size: 2.8rem !important;
             margin-top: 20px !important;
@@ -324,74 +325,65 @@ st.markdown("<style>\n" + bg_css + """
             margin: 0 auto !important;
         }
         
-        /* MOBILE PAR CHAT INPUT BAR FIX (FOOLPROOF VERSION) */
+        /* 🚨 STREAMLIT MOBILE COLUMN OVERRIDE 🚨 */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {
             display: flex !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
             width: 95% !important;
-            bottom: 20px !important; 
-            padding: 5px !important;
+            bottom: 20px !important;
+            align-items: center !important;
             gap: 5px !important;
         }
-        
-        /* Streamlit ke mobile 100% width aur line-break ko kill karna */
+
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] {
-            min-width: 0 !important;
-            display: block !important;
+            min-width: 0px !important; 
+            width: auto !important;
             margin: 0 !important;
             padding: 0 !important;
         }
-        
-        /* 1st Column: Upload Button (Fixed 35px) */
+
+        /* Teeno dabbon ki strict mobile width */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(1) {
-            flex: 0 0 35px !important;
-            width: 35px !important;
+            flex: 0 0 35px !important; 
         }
-        
-        /* 2nd Column: Text Input Box (Takes all remaining space) */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(2) {
-            flex: 1 1 100% !important;
-            width: 100% !important;
+            flex: 1 1 auto !important; 
         }
-        
-        /* 3rd Column: Voice Button (Fixed 65px) */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(3) {
-            flex: 0 0 65px !important;
-            width: 65px !important;
+            flex: 0 0 65px !important; 
         }
 
-        /* UPLOAD BUTTON SIZING */
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] {
-            width: 35px !important; 
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] > div[data-testid="stVerticalBlock"] {
+            gap: 0 !important;
+            padding: 0 !important;
         }
+
+        /* Upload Button */
+        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"],
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button {
             width: 35px !important;
             height: 35px !important;
+            min-height: 35px !important;
         }
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button::after {
             font-size: 22px !important; 
         }
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] small,
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] div,
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button * {
-            display: none !important;
-        }
         
-        /* TEXT INPUT & VOICE BUTTON SIZING */
+        /* Text Input */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {
-            font-size: 13px !important;
-            padding-left: 10px !important;
-            padding-right: 30px !important;
             height: 35px !important;
-            background-size: 16px !important; 
-            background-position: right 8px center !important;
+            min-height: 35px !important;
+            font-size: 14px !important;
+            padding-right: 25px !important;
         }
+
+        /* Voice Button */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {
-            padding: 0 !important;
-            font-size: 13px !important;
             height: 35px !important;
-            width: 100% !important;
+            min-height: 35px !important;
+            padding: 0 5px !important;
+            font-size: 13px !important;
         }
     }
     /* 🔥 STREAMLIT KE DEFAULT BUTTON TEXT KO COMPLETELY HIDE KARNE KE LIYE */
