@@ -304,7 +304,7 @@ st.markdown("<style>\n" + bg_css + """
     }
 
     @media (max-width: 768px) {
-        /* Purane Mobile Styles (Hero Title, Cards, etc.) */
+        /* Purane Mobile Styles (Hero Title, Cards, etc. jo theek hain) */
         .hero-title {
             font-size: 2.8rem !important;
             margin-top: 20px !important;
@@ -325,33 +325,25 @@ st.markdown("<style>\n" + bg_css + """
             margin: 0 auto !important;
         }
         
-        /* 🚨 STREAMLIT MOBILE COLUMN OVERRIDE 🚨 */
+        /* 🚨 THE CSS GRID FIX FOR CHAT BAR 🚨 */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
+            display: grid !important; /* Flexbox bypass */
+            grid-template-columns: 40px 1fr 65px !important; /* Exact width: 40px Upload, 1fr Text(baaki jagah), 65px Voice */
             width: 95% !important;
             bottom: 20px !important;
-            align-items: center !important;
+            padding: 5px !important;
             gap: 5px !important;
+            align-items: center !important;
         }
 
+        /* Streamlit ke columns ko Grid ke andar fit karna */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] {
-            min-width: 0px !important; 
-            width: auto !important;
+            width: 100% !important;
+            min-width: 0px !important;
+            max-width: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
-        }
-
-        /* Teeno dabbon ki strict mobile width */
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(1) {
-            flex: 0 0 35px !important; 
-        }
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(2) {
-            flex: 1 1 auto !important; 
-        }
-        div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"]:nth-child(3) {
-            flex: 0 0 65px !important; 
+            display: block !important;
         }
 
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) > div[data-testid="column"] > div[data-testid="stVerticalBlock"] {
@@ -359,31 +351,35 @@ st.markdown("<style>\n" + bg_css + """
             padding: 0 !important;
         }
 
-        /* Upload Button */
+        /* 1. Upload Button Sizing */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"],
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button {
-            width: 35px !important;
-            height: 35px !important;
-            min-height: 35px !important;
+            width: 40px !important;
+            height: 40px !important;
+            min-height: 40px !important;
+            padding: 0 !important;
         }
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button::after {
-            font-size: 22px !important; 
+            font-size: 24px !important; 
         }
         
-        /* Text Input */
+        /* 2. Text Input Sizing */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {
-            height: 35px !important;
-            min-height: 35px !important;
+            height: 40px !important;
+            min-height: 40px !important;
             font-size: 14px !important;
-            padding-right: 25px !important;
+            padding-left: 10px !important;
+            padding-right: 30px !important;
+            width: 100% !important;
         }
 
-        /* Voice Button */
+        /* 3. Voice Button Sizing */
         div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) button[kind="primary"] {
-            height: 35px !important;
-            min-height: 35px !important;
-            padding: 0 5px !important;
+            height: 40px !important;
+            min-height: 40px !important;
+            padding: 0 !important;
             font-size: 13px !important;
+            width: 100% !important;
         }
     }
     /* 🔥 STREAMLIT KE DEFAULT BUTTON TEXT KO COMPLETELY HIDE KARNE KE LIYE */
