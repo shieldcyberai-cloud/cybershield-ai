@@ -353,6 +353,10 @@ st.markdown("<style>\n" + bg_css + """
             height: 32px !important;
         }
     }
+    /* 🔥 STREAMLIT KE DEFAULT BUTTON TEXT KO COMPLETELY HIDE KARNE KE LIYE */
+    div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) [data-testid="stFileUploader"] button * {
+        display: none !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
