@@ -253,6 +253,7 @@ st.markdown("<style>\n" + bg_css + """
         background: transparent !important;
         border: none !important;
         color: transparent !important;
+        font-size: 0px !important;
         width: 40px !important;
         height: 40px !important;
         padding: 0 !important;
@@ -276,10 +277,15 @@ st.markdown("<style>\n" + bg_css + """
         background: transparent !important;
         color: #f8fafc !important;
         padding-left: 10px !important;
+        padding-right: 40px !important;
         box-shadow: none !important;
         font-size: 15px !important;
         height: 40px !important;
         outline: none !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a1a1aa'%3E%3Cpath d='M2.01 21L23 12 2.01 3 2 10l15 2-15 2z'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        background-size: 18px !important;
     }
     div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input:focus {
         border: none !important;
