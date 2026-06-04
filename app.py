@@ -114,9 +114,9 @@ st.markdown("<style>\n" + bg_css + """
     h1, h2, h3, h4, h5, h6, p, span, li { font-family: 'Inter', sans-serif; color: #f8fafc; }
     
     .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div { 
-        background-color: rgba(255, 255, 255, 0.05) !important; 
-        color: #e2e8f0 !important; 
-        border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+        background-color: rgba(255, 255, 255, 0.8) !important; 
+        color: #0f172a !important; 
+        border: 1px solid rgba(0, 0, 0, 0.2) !important; 
         border-radius: 12px;
     }
     
@@ -275,7 +275,7 @@ st.markdown("<style>\n" + bg_css + """
     div[data-testid="stHorizontalBlock"]:has(input[placeholder="Ask anything"]) .stTextInput > div > div > input {
         border: none !important;
         background: transparent !important;
-        color: #f8fafc !important;
+        color: #0f172a !important; 
         padding-left: 10px !important;
         padding-right: 40px !important;
         box-shadow: none !important;
