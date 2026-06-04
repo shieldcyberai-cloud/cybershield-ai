@@ -702,8 +702,14 @@ else:
         st.session_state['persona'] = st.selectbox("Operational Mode", ["Professional Mode", "Friendly Mode", "Sarcastic Mode"])
         
         st.markdown("<br><b>Navigation</b>", unsafe_allow_html=True)
-        current_index = 0 if st.session_state['nav_view'] == "Threat Scanner" else 1
-        selected_nav = st.radio("Select View:", ["Threat Scanner", "Cyber Assistant"], index=current_index, label_visibility="collapsed")
+        if st.session_state['nav_view'] == "Threat Scanner":
+            current_index = 0
+        elif st.session_state['nav_view'] == "Cyber Assistant":
+            current_index = 1
+        else:
+            current_index = 2
+            
+        selected_nav = st.radio("Select View:", ["Threat Scanner", "Cyber Assistant", "Scan History"], index=current_index, label_visibility="collapsed")
         
         if selected_nav != st.session_state['nav_view']:
             st.session_state['nav_view'] = selected_nav
@@ -937,3 +943,38 @@ else:
                 except:
                     st.markdown(reply_json_str)
                     speak(clean_text_for_speech(reply_json_str))
+                    # ==================================================
+    # 📜 SCAN HISTORY MODULE
+    # ==================================================
+    elif st.session_state['nav_view'] == "Scan History":
+        import pandas as pd
+        from datetime import datetime
+
+        st.markdown("<h2>📜 Assessment Logs & History</h2>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #94a3b8;'>Review your previous threat assessments and download clinical history.</p>", unsafe_allow_html=True)
+        
+        # Dummy data for Thesis Screenshot (Since actual DB table might not exist yet)
+        st.warning("Displaying local session logs for demonstration.")
+        
+        dummy_data = {
+            "Timestamp": [datetime.now().strftime("%Y-%m-%d %H:%M"), "2026-05-30 14:20", "2026-05-29 09:15", "2026-05-28 18:45"],
+            "Scanned Payload": ["Urgent: Verify your account...", "Hello, attached is the invoice.", "Click here to claim your prize!", "Meeting notes for Q3"],
+            "Risk %": ["85.4%", "12.0%", "92.1%", "5.2%"],
+            "Category": ["HIGH RISK", "SAFE", "HIGH RISK / SPAM", "SAFE"]
+        }
+        df = pd.DataFrame(dummy_data)
+
+        # Styling the table with Streamlit dataframe
+        st.dataframe(df, use_container_width=True, hide_index=True)
+        
+        st.markdown("<hr style='border-color: rgba(255,255,255,0.1); margin: 20px 0;'>", unsafe_allow_html=True)
+        
+        # Download Button
+        csv = df.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="📥 Download Assessment History (CSV)",
+            data=csv,
+            file_name='CyberShield_Scan_History.csv',
+            mime='text/csv',
+            type="primary"
+        )
